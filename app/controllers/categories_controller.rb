@@ -5,25 +5,31 @@ class CategoriesController < ApplicationController
    render json: categories
  end
 
+ def show
+   category = Category.find(params[:id])
+   render json: category
+ end
+
  def create
-   cetegory = Category.create(cetegory_param)
-   render json: cetegory
+   category = Category.create(category_param)
+   render json: category
  end
 
  def update
-   cetegory = Category.find(params[:id])
-   cetegory.update(cetegory)
-   render json: cetegory
+   category = Category.find(params[:id])
+   category.update(category_param)
+   render json: category
  end
 
  def destroy
-   cetegory = Category.find(params[:id])
-   cetegory.destroy
+   category = Category.find(params[:id])
+   category.destroy
    head :no_content, status: :ok
  end
 
  private
-   def cetegory_param
-     params.require(:cetegory).permit(:category_name)
+   def category_param
+    
+     params.require(:category).permit(:category_name)
    end
 end
